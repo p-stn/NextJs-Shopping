@@ -8,6 +8,21 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      theme:{
+        extend:{
+          
+        }
+      },
+      content:{
+       'gift' : 'url("/icon/hader-icon/gift-cart.svg")' ,
+       'ham' : 'url("/icon/hader-icon/ham.svg")' ,
+       'loc' : 'url("/icon/hader-icon/loc.svg")' ,
+       'market' : 'url("/icon/hader-icon/market.svg")' ,
+       'price' : 'url("/icon/hader-icon/price.svg")' ,
+       'wow' : 'url("/icon/hader-icon/wow.svg")' ,
+        'medal' : 'url("/icon/hader-icon/medal.svg")' ,
+      //  'gift' : 'url("/icon/hader-icon/gift-cart.svg")' ,
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
