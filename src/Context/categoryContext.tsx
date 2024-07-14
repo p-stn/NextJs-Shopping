@@ -10,7 +10,7 @@ export const CategoryProvider = ({ children }) => {
     // const CategoryProduct = async () => {
     async function CategoryProduct() {
         try {
-            const response = await fetch("https://one-api.ir/digikala/?token=722106:6552525d25f10&action=categories");
+            const response = await fetch(`https://one-api.ir/digikala/?token=${process.env.NEXT_PUBLIC_API_KEY}&action=categories`);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }

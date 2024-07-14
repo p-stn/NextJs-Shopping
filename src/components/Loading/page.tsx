@@ -4,7 +4,7 @@ import Image from 'next/image'
 export default function page() {
     return (
         <div>
-            <div className='w-full absolute top-0 h-[100vh] flex items-center justify-center bg-[#000000b1]'>
+            <div className='w-full absolute top-0 right-0 h-[100vh] flex items-center justify-center bg-[#000000b1]'>
                 <div className='w-[350px] h-[200px] bg-white rounded-[10px] flex justify-evenly flex-col items-center'>
                     <div>
                         <Image src="/icon/logo.svg" width={200} height={200} />

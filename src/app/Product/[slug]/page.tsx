@@ -43,7 +43,7 @@ export default function Page({ params, searchParams }: any) {
   useEffect(() => {
     const getValPro = (async (id: any) => {
       try {
-        const response = await fetch(`https://one-api.ir/digikala/?token=722106:6552525d25f10&action=product&id=${id}`);
+        const response = await fetch(`https://one-api.ir/digikala/?token=${process.env.NEXT_PUBLIC_API_KEY}&action=product&id=${id}`);
         if (!response.ok) {
           // ok
           throw new Error(`HTTP error! status: ${response.status}`);

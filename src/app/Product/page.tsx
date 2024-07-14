@@ -3,11 +3,12 @@ import React, { useEffect } from 'react'
 import Link from 'next/link';
 import Image from 'next/image';
 import { useGlobalContextShowProduct } from '@/Context/showProductContext'
+import Loading from "@/components/Loading/page"
 import Header from "@/components/Header/page"
 
 export default function page() {
   
-  const { products, ShowProduct } = useGlobalContextShowProduct()
+  const { loading,products, ShowProduct } = useGlobalContextShowProduct()
   
   useEffect(() => {
     const existingValue = localStorage.getItem('selectedCategory');
@@ -16,10 +17,12 @@ export default function page() {
     
 
   }, [])
+  
   return (
     <>
       {/* <Header /> */}
-      {products.map((e: any, i: number) => {
+      {loading?
+      products.map((e: any, i: number) => {
         // let mySrc = `../Product/${e.id}`;
         let mySrc = `../Product/${e.id}?category=${e.title_fa}`;
         return (
@@ -71,7 +74,9 @@ export default function page() {
             </div>
           </Link>
         );
-      })}
+      })
+      :<Loading/>}
+      
     </>
   )
 }
