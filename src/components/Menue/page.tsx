@@ -9,7 +9,7 @@ export default function page() {
     <>
       {/* <TestCo info={info} setInfo={setInfo} /> */}
       <div
-        className='w-full  h-[40px] hidden lg:flex justify-between items-end   '>
+        className='w-full  h-[40px] hidden px-[10px] lg:flex justify-between items-end   '>
 
 
         <div className=' '>

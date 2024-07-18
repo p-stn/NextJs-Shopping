@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState, useRef, useLayoutEffect } from "react";
+import React, { useEffect, useState, useRef, useLayoutEffect, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Login from "../ui/login";
@@ -38,6 +38,7 @@ export default function page() {
 
 
 
+
   async function getval() {
     // const val = await getUserInfo()
     // console.log(val);
@@ -49,18 +50,28 @@ export default function page() {
   // console.log(user);
   // const { getApi }: any = useStoreApi();
   const [s, setX] = useState(0)
-  
-  useEffect(() => {
-    const infoUser = (async () => {
-      const val = await getUserInfo()
-      setLoading(true)
-      setUserInfo(val.user)
-      setUser(val.status)
-      setUserStatus(val.status)
 
-    })
-    infoUser()
+  const getCallBack = useCallback(async () => {
+    const val = await getUserInfo()
+    setLoading(true)
+    setUserInfo(val.user)
+    setUser(val.status)
+    setUserStatus(val.status)
+
   }, [])
+  useEffect(() => {
+    getCallBack()
+    // const infoUser = (async () => {
+      // const val = await getUserInfo()
+      // console.log(val);
+      // setLoading(true)
+      // setUserInfo(val.user)
+      // // setUser(val.status)
+      // setUserStatus(val.status)
+
+    // })
+    // infoUser()
+  }, [getCallBack])
 
   // console.log(userStatus);
   // useEffect(() => {
@@ -83,9 +94,9 @@ export default function page() {
   return (
     <>
       <div className="flex flex-col w-full h-auto myContainer mx-auto  bg-white pt-[10px]">
-        <div className="lg:flex w-full h-full hidden ">
+        <div className="lg:flex px-[10px] w-full h-full hidden ">
           <div className="grow-[1] h-full  flex flex-row items-center">
-            <Link href={"/"}  className="ml-[20px]">
+            <Link href={"/"} className="ml-[20px]">
               <Image src="/logo/logo.svg" width={100} height={100} alt="pic" />
             </Link>
             <input
@@ -93,7 +104,7 @@ export default function page() {
               placeholder="جستجو"
               type="text"
               name=""
-              
+
               id=""
             />
           </div>
@@ -123,52 +134,52 @@ export default function page() {
                     {userStatus ? carts.length : [].length}
                   </span>
                 </a>
-                {carts.length==0?
-                <div ref={showMiniCart} className="absolute flex-col justify-center items-center top-[20px] hidden z-50 left-[5%] w-[350px] bg-[#fff]  h-[300px] rounded-[10px] shadow-lg border">
-                  <Image src="/NoShop.svg" width={150} height={150} alt="NoShop" />
-                  <h2 className="text-[20px] mt-[10px] font-[700]">سبد خرید شما خالی است!</h2>
-                </div>
-                :
-                <div ref={showMiniCart} className="absolute  flex-col top-[20px] hidden z-50 left-[5%] w-[450px] bg-[#fff]  h-[450px] rounded-[10px] shadow-lg border">
-                  <div className="w-full h-[40px] static p-[10px]"><h5 className="text-[13px] font-[400]">{userStatus ? carts.length : [].length} کالا</h5></div>
-                  <div className=" w-full h-full overflow-y-scroll">
-                    {
-                       carts.map((e,i) => {
-                        myPrice = myPrice + e.product_price
-
-                        return (<div key={i} className="w-full h-[200px]  mb-[30px] border-t flex flex-row pt-[10px] pr-[10px]">
-                          <div className="w-[40%] h-full ">
-                            <Image src={e.product_img} width={150} height={150} alt="pic" />
-                          </div>
-                          <div className="w-[60%] h-full px-[10px]">
-                            <h2 className="text-[14px] font-[700] font-sans ">{e.product_name}</h2>
-                            <p className="flex items-center mt-[10px]"><span className="flex w-[20px] ml-[3px] h-[20px] rounded-full bg-[#000]"></span>مشکی</p>
-
-                            <h1 className="flex w-full text-[20px] mt-[80px] font-[700] justify-end">
-                              {e.product_price.toLocaleString()}
-                              <Image className="mr-[5px]" src="/icon/iconProduct/toman.svg" width={15} height={15} alt="pic" />
-                            </h1>
-                          </div>
-                        </div>)
-                      })
-                    }
-
+                {carts.length == 0 ?
+                  <div ref={showMiniCart} className="absolute flex-col justify-center items-center top-[20px] hidden z-50 left-[5%] w-[350px] bg-[#fff]  h-[300px] rounded-[10px] shadow-lg border">
+                    <Image src="/NoShop.svg" width={150} height={150} alt="NoShop" />
+                    <h2 className="text-[20px] mt-[10px] font-[700]">سبد خرید شما خالی است!</h2>
                   </div>
-                  <div className="w-full h-[80px] p-[10px] border-t flex flex-row justify-between">
-                    <div className="flex flex-col">
-                      <p className="text-[12px] font-[400]">مبلغ قابل پرداخت</p>
-                      <h3 className="flex flex-row text-[20px] font-[700]">
-                        {myPrice.toLocaleString()}
-                        <Image className="mr-[5px]" src="/icon/iconProduct/toman.svg" width={15} height={15} alt="pic" />
-                      </h3>
+                  :
+                  <div ref={showMiniCart} className="absolute  flex-col top-[20px] hidden z-50 left-[5%] w-[450px] bg-[#fff]  h-[450px] rounded-[10px] shadow-lg border">
+                    <div className="w-full h-[40px] static p-[10px]"><h5 className="text-[13px] font-[400]">{userStatus ? carts.length : [].length} کالا</h5></div>
+                    <div className=" w-full h-full overflow-y-scroll">
+                      {
+                        carts.map((e, i) => {
+                          myPrice = myPrice + e.product_price
+
+                          return (<div key={i} className="w-full h-[200px]  mb-[30px] border-t flex flex-row pt-[10px] pr-[10px]">
+                            <div className="w-[40%] h-full ">
+                              <Image src={e.product_img} width={150} height={150} alt="pic" />
+                            </div>
+                            <div className="w-[60%] h-full px-[10px]">
+                              <h2 className="text-[14px] font-[700] font-sans ">{e.product_name}</h2>
+                              <p className="flex items-center mt-[10px]"><span className="flex w-[20px] ml-[3px] h-[20px] rounded-full bg-[#000]"></span>مشکی</p>
+
+                              <h1 className="flex w-full text-[20px] mt-[80px] font-[700] justify-end">
+                                {e.product_price.toLocaleString()}
+                                <Image className="mr-[5px]" src="/icon/iconProduct/toman.svg" width={15} height={15} alt="pic" />
+                              </h1>
+                            </div>
+                          </div>)
+                        })
+                      }
+
                     </div>
-                    <div>
-                      <button className="w-[110px] text-[13px] h-full rounded-[8px] text-[#fff] bg-[#dc2626]">ثبت سفارش</button>
+                    <div className="w-full h-[80px] p-[10px] border-t flex flex-row justify-between">
+                      <div className="flex flex-col">
+                        <p className="text-[12px] font-[400]">مبلغ قابل پرداخت</p>
+                        <h3 className="flex flex-row text-[20px] font-[700]">
+                          {myPrice.toLocaleString()}
+                          <Image className="mr-[5px]" src="/icon/iconProduct/toman.svg" width={15} height={15} alt="pic" />
+                        </h3>
+                      </div>
+                      <div>
+                        <button className="w-[110px] text-[13px] h-full rounded-[8px] text-[#fff] bg-[#dc2626]">ثبت سفارش</button>
+                      </div>
                     </div>
                   </div>
-                </div>
                 }
-                
+
               </div>
 
             </div>
@@ -208,7 +219,7 @@ export default function page() {
         {/* ################## */}
         <div className="flex lg:hidden">
           <div className="grow-[2] flex justify-center items-center h-[50px] ">
-            <button onClick={showHam}>              
+            <button onClick={showHam}>
               <Image src="/icon/iconMobile/ham.svg" width={20} height={20} alt="NO" />
             </button>
           </div>

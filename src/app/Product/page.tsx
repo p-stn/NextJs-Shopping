@@ -75,7 +75,8 @@ export default function page() {
           </Link>
         );
       })
-      :<Loading/>}
+      :null}
+      {/* <Loading/> */}
       
     </>
   )

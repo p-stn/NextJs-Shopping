@@ -106,7 +106,7 @@ export default function Page({ params, searchParams }: any) {
       <Close valClose={valClose} setValClose={setValClose} />
       {loading ?
         <div className="flex myContainer mx-auto flex-col">
-          <div className='w-full h-[30px] flex justify-between my-[10px]'>
+          <div className='w-full h-[30px] px-[20px] flex justify-between my-[10px]'>
             <h4 className="text-[14px]">دیجی‌کالا/موبایل/گوشی موبایل</h4>
             {/* <h4>{e.title_fa}/{e.category_title}</h4> */}
             <h4 className="text-[14px] hidden lg:flex">ثبت آگهی در پیندو فروش در دیجی‌کالا</h4>
@@ -114,7 +114,7 @@ export default function Page({ params, searchParams }: any) {
           </div>
 
           <div className='flex w-[100%] flex-col px-[5px] lg:px-0 lg:flex-row'>
-            <div className="grow-[1] w-full lg:w-[20%] flex flex-col items-center justify-center lg:justify-start ">
+            <div className="grow-[1] w-full m-[10px] lg:w-[20%] flex flex-col items-center justify-center lg:justify-start ">
               {/* <Image src="/icon/iconProduct/shopTest.webp" width={500} height={500} alt="pic" /> */}
               <Image src={getProduct.images.main} width={500} height={500}
                 // className="w-[300px] h-[2/50px] lg:w-[500px] lg:h-[500px]"
@@ -147,9 +147,9 @@ export default function Page({ params, searchParams }: any) {
                 <h1 className='lg:mt-[8px] text-[10px] lg:text-[20px] py-[15px] text-[#000] font-[700]'>{getProduct.title_fa}</h1>
               </div>
 
-              <div className='flex grow-[4] h-[100vh] flex-col  lg:flex-row'>
-                <div className="grow-[3] w-full lg:w-[50%]  h-[100vh] ">
-                  <div className='w-auto lg:w-[100%] pl-[10px]  flex flex-col'>
+              <div className='flex grow-[4] h-[100vh] flex-col m-[5px] lg:flex-row'>
+                <div className="grow-[3] w-full lg:w-[50%] m-[10px] h-[100vh] ">
+                  <div className='w-auto lg:w-[100%] pl-[10px]   flex flex-col'>
                     <div className='w-full h-[191px] '>
                       <div className="flex items-center ">
                         <span className="w-[100%] lg:text-nowrap text-[12px]   text-[#C0C2C5]">{getProduct.title_en} </span>
@@ -243,7 +243,7 @@ export default function Page({ params, searchParams }: any) {
                   </div>
 
                 </div>
-                <div className="grow-[2] w-full lg:w-[30%] h-[100vh]  flex justify-center">
+                <div className="grow-[2] w-full lg:w-[30%] h-[100vh] m-[10px]  flex justify-center">
                   <div className='w-full max-w-[430px] h-[515px] p-[10px] bg-[#F7F7F7] border rounded-[10px]'>
                     <div className='w-full h-[57px]'>
                       <h4 className="flex justify-between items-center">
